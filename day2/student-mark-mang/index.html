@@ -1,21 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Student Mark Management</title>
 
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <h1 class="text-center">Student Mark Management</h1>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Mark Management</title>
 
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container main-container">
+        <div class="studentmark-header">
+            <h2>Students Exam Marks</h2>
+        </div>
+        <div class="studentmark-content">
+            <h3>Marks secured in Annual Examination</h3>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        (function () {
+            function populateStudentsmark() {
+                var markContent = document.getElementsByClassName("gallery-content")[0];
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var studentmarkResponse = JSON.parse(this.responseText);
+                        var dynamicDom = "";
+                        <tr><th>Name</th><th>English</th><th>Tamil</th><th>Maths</th><th>Science</th><th>Social</th> </tr>
+                        studentmarkResponse.forEach(function (item) {
+                        dynamicDom +="<tr><th> "+Name+" </th></tr>"; 
+                         studentmarkResponse.forEach(function (item){
+                             dynamicDom +="<tr><td> "+item.name+" </td></tr>";
+                             dynamicDom +="<tr><td> "+item.eng+" </td></tr>";
+                             dynamicDom +="<tr><td> "+item.tam+" </td></tr>";
+                             dynamicDom +="<tr><td> "+item.math+" </td></tr>";
+                             dynamicDom +="<tr><td> "+item.sci+" </td></tr>";
+                            dynamicDom +="<tr><td> "+item.soc+" </td></tr>";
+                         }               
+                        });
+                        markContent.innerHTML = dynamicDom;
+                    }
+                };
+                xhttp.open("GET", "data/exam-mark.json", true);
+                xhttp.send();
+            }
+            populateStudentsmark();
+        })();
+    </script>
+</body>
+
 </html>
