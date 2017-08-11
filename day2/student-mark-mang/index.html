@@ -16,10 +16,26 @@
         <div class="studentmark-header">
             <h2>Students Exam Marks</h2>
         </div>
-        <div class="studentmark-content">
+        <div>
             <h3>Marks secured in Annual Examination</h3>
         </div>
     </div>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>English</th>
+                <th>Tamil</th>
+                <th>Maths</th>
+                <th>Science</th>
+                <th>Social</th>
+            </tr>
+        </thead>
+        <tbody class="studentmark-content">
+        
+        </tbody>
+    </table>
     
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -27,22 +43,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         (function () {
-            function populateStudentsmark() {
-                var markContent = document.getElementsByClassName("gallery-content")[0];
+            function populateStudentsMark() {
+                var markContent = document.getElementsByClassName("studentmark-content")[0];
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var studentmarkResponse = JSON.parse(this.responseText);
-                        var dynamicDom = "<tr><th>Name</th><th>English</th><th>Tamil</th><th>Maths</th><th>Science</th><th>Social</th> </tr>";
+                        var dynamicDom ="";
                         studentmarkResponse.forEach(function (student) {
-                         studentmarkResponse.forEach(function (mark){
-                             dynamicDom +="<tr><td> "+student.name+" </td></tr>";
-                             dynamicDom +="<tr><td> "+mark.eng+" </td></tr>";
-                             dynamicDom +="<tr><td> "+mark.tam+" </td></tr>";
-                             dynamicDom +="<tr><td> "+mark.math+" </td></tr>";
-                             dynamicDom +="<tr><td> "+mark.sci+" </td></tr>";
-                            dynamicDom +="<tr><td> "+mark.soc+" </td></tr>";
-                         });               
+                        dynamicDom +="<tr>";
+                        dynamicDom +="<td> "+student.name+" </td>"
+                             dynamicDom +="<td> "+student.eng+" </td>";
+                             dynamicDom +="<td> "+student.tam+" </td>";
+                             dynamicDom +="<td> "+student.math+" </td>";
+                             dynamicDom +="<td> "+student.sci+" </td>";
+                             dynamicDom +="<td> "+student.soc+" </td>"; 
+                         dynamicDom +="</tr>";             
                         });
                         markContent.innerHTML = dynamicDom;
                     }
@@ -50,9 +66,8 @@
                 xhttp.open("GET", "data/exam-mark.json", true);
                 xhttp.send();
             }
-            populateStudentsmark();
+            populateStudentsMark();
         })();
     </script>
 </body>
 
-</html>
