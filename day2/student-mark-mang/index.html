@@ -33,8 +33,7 @@
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var studentmarkResponse = JSON.parse(this.responseText);
-                        var dynamicDom = "";
-                        <tr><th>Name</th><th>English</th><th>Tamil</th><th>Maths</th><th>Science</th><th>Social</th> </tr>
+                        var dynamicDom = "<tr><th>Name</th><th>English</th><th>Tamil</th><th>Maths</th><th>Science</th><th>Social</th> </tr>";
                         studentmarkResponse.forEach(function (item) {
                         dynamicDom +="<tr><th> "+Name+" </th></tr>"; 
                          studentmarkResponse.forEach(function (item){
