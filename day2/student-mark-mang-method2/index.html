@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Mark Management</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container main-container">
+        <div class="studentmark-header">
+            <h2>Students Exam Marks</h2>
+        </div>
+        <div>
+            <h3>Marks secured in Annual Examination</h3>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>English</th>
+                <th>Tamil</th>
+                <th>Maths</th>
+                <th>Science</th>
+                <th>Social</th>
+            </tr>
+        </thead>
+        <tbody class="studentmark-content">
+
+        </tbody>
+    </table>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        (function () {
+            function populateStudentsmark() {
+                var markContent = document.getElementsByClassName("studentmark-content")[0];
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var markResponse = JSON.parse(this.responseText);
+                        var dynamicDom = "";
+                        for (var i = 0; i < markResponse.length; i++) {
+                            var name = markResponse[i].name;
+                            var mark = markResponse[i].mark;
+
+                            dynamicDom += "<tr>";
+                            dynamicDom += "<td>" + name + " </td>";
+                            for (var j = 0; j < mark.length; j++) {
+                                dynamicDom += "<td> " + mark[j] + " </td>";
+                            }
+                            dynamicDom += "</tr>";
+                        }
+                        markContent.innerHTML = dynamicDom;
+                    }
+                };
+                xhttp.open("GET", "data/exam_mark.json", true);
+                xhttp.send();
+            }
+            populateStudentsmark();
+        })();
+        
+    </script>
+</body>
