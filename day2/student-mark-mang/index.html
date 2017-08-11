@@ -34,15 +34,14 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var studentmarkResponse = JSON.parse(this.responseText);
                         var dynamicDom = "<tr><th>Name</th><th>English</th><th>Tamil</th><th>Maths</th><th>Science</th><th>Social</th> </tr>";
-                        studentmarkResponse.forEach(function (item) {
-                        dynamicDom +="<tr><th> "+Name+" </th></tr>"; 
-                         studentmarkResponse.forEach(function (item){
-                             dynamicDom +="<tr><td> "+item.name+" </td></tr>";
-                             dynamicDom +="<tr><td> "+item.eng+" </td></tr>";
-                             dynamicDom +="<tr><td> "+item.tam+" </td></tr>";
-                             dynamicDom +="<tr><td> "+item.math+" </td></tr>";
-                             dynamicDom +="<tr><td> "+item.sci+" </td></tr>";
-                            dynamicDom +="<tr><td> "+item.soc+" </td></tr>";
+                        studentmarkResponse.forEach(function (student) {
+                         studentmarkResponse.forEach(function (mark){
+                             dynamicDom +="<tr><td> "+student.name+" </td></tr>";
+                             dynamicDom +="<tr><td> "+mark.eng+" </td></tr>";
+                             dynamicDom +="<tr><td> "+mark.tam+" </td></tr>";
+                             dynamicDom +="<tr><td> "+mark.math+" </td></tr>";
+                             dynamicDom +="<tr><td> "+mark.sci+" </td></tr>";
+                            dynamicDom +="<tr><td> "+mark.soc+" </td></tr>";
                          });               
                         });
                         markContent.innerHTML = dynamicDom;
