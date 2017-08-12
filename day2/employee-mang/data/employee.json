@@ -1,0 +1,17 @@
+[{
+    "name"  : "S.Kumaran",
+    "dob"   : "27-08-1956",
+    "address": "No.56,M.G.R Nagar,Thuraipakkam,Chennai"
+},
+{   "name"  : "M.Iyyapan",
+    "dob"   : "22-10-1978",
+    "address": "No.43,v.o.c Street,medavakkam,chennai"
+},{
+    "name"  : "K.Vijay",
+    "dob"   : "12-06-1980",
+    "address": "No.6,TNagar,Chennai"
+},{
+    "name"  : "k.kannan",
+    "dob"   : "06-08-1993",
+    "address": "No.4/53,Bhajana Street,vadapalani,Chennai"
+}]
