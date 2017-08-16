@@ -9,6 +9,13 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    table{
+        border-collapse: 1px soild black;
+    }
+    .pass {color:green;}
+    .fail {color:red;}
+</style>
 </head>
 
 <body>
@@ -30,6 +37,7 @@
                 <th>Maths</th>
                 <th>Science</th>
                 <th>Social</th>
+                <th>Pass or Fail</th>
             </tr>
         </thead>
         <tbody class="studentmark-content">
@@ -50,6 +58,7 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var markResponse = JSON.parse(this.responseText);
                         var dynamicDom = "";
+                        var failFlag=0;
                         for (var i = 0; i < markResponse.length; i++) {
                             var name = markResponse[i].name;
                             var mark = markResponse[i].mark;
@@ -57,8 +66,26 @@
                             dynamicDom += "<tr>";
                             dynamicDom += "<td>" + name + " </td>";
                             for (var j = 0; j < mark.length; j++) {
-                                dynamicDom += "<td> " + mark[j] + " </td>";
+                                if(mark[j]<=40)
+                                {
+                                    failFlag=1;
+                                    dynamicDom += "<td class='fail'> " + mark[j] + " </td>";
+                                }
+                                else
+                                {
+                                    dynamicDom += "<td class='pass'> " + mark[j] + " </td>";  
+                                }
                             }
+                                
+                                if (failFlag == 1) {
+                                dynamicDom += "<td class='fail'>Fail</td>"
+                                failFlag = 0;
+                                }
+                                else 
+                                {
+                                dynamicDom += "<td class='pass'>Pass</td>"
+                                }
+                            
                             dynamicDom += "</tr>";
                         }
                         markContent.innerHTML = dynamicDom;
