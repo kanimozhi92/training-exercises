@@ -13,7 +13,9 @@
         .a {
             font-family: 'Times New Roman';
             font-size: 25px;
-            display:inline;
+            display: inline;
+            list-style-type: none;
+               
         }
 
         body {
@@ -66,12 +68,14 @@
                         var dynamicDom="";
                         dynamicDom = "<ul class='a'>";
                         employeeResponse.forEach(function (item) {
-                            dynamicDom += "<div class='panel panel-default'>";
+                            dynamicDom +="<div class='row'>";
+                            dynamicDom += "<div class='col-md-4'>";
+                            dynamicDom +=  "<img src='"+item.url+"'width=30% height=30% class='img-thumbnail'/></div>";
+                            dynamicDom += "<div class='panel panel-default col-md-8'>";
                             dynamicDom += "<li>" + item.name + " </li>";
                             dynamicDom += "<li>" + item.dob + " </li>";
-                            dynamicDom += "<li>" + item.address + " </li>";
+                            dynamicDom += "<li>" + item.address + " </li></div>";
                             dynamicDom += "</div><br />";
-                           
                         });
                         dynamicDom += "</ul>";
                     }
